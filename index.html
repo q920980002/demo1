@@ -6,36 +6,246 @@
     <title>测试</title>
     <link href="css/public.css" rel="stylesheet">
     <link href="css/button.css" rel="stylesheet">
+    <script type="text/javascript" src="js/public.js"></script> 
     <script type="text/javascript" src="js/jquery.min.js"></script> 
     <style>
-           
+
     </style>
     <script>
-       
-        function saycolor(){
-            alert(this);
-        }
-        var a= {
+   
 
-            //hello world
-            fun : function(){
-                alert(this);
+    $(function(){
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        //context.fillRect(10,10,100,100);
+        // context.fillStyle = "#f88122";
+        // context.save();
+
+        // context.fillStyle = "#18f122";
+        // context.fillRect(10,10,100,100);
+
+
+
+        //context.restore();
+        
+        //context.scale(2,2);
+
+        //context.translate(50,50);
+        //context.rotate(a2r(10));
+
+        //context.translate(0,0);
+       // context.translate(100,100);
+        //context.fillRect(0,0,100,100);
+
+
+
+        // context.beginPath();
+        // //context.arc(100,100,50,a2r(0),a2r(280),false);
+
+        // context.closePath();
+        // context.fill();
+        // context.fillRect(0,0,500,500);
+
+        // context.fillStyle = "#ffffff";
+
+        // context.beginPath();
+        // context.shadowBlur = 100;
+        // context.shadowOffsetX = 0;
+        // context.shadowOffsetY = 0;
+        // context.shadowColor = "#ff5511";
+        // context.arc(100,100,50,a2r(0),a2r(360),false);
+        // context.closePath();
+        // context.fill();
+
+
+        //  context.beginPath();
+        //  context.moveTo(50,50);
+        //  context.quadraticCurveTo(250,100,450,250);
+        //  context.stroke();
+
+        //  var data = context.getImageData(0,0,50,50);
+        //  var pixels = data.data;
+        //  //console.log(data.data.length/4);
+        //  for(var i=0;i<data.data.length/4;i++){
+        //     data.data[i*4] = 255;
+        //     data.data[i*4 + 1] = 20;
+        //     data.data[i*4 + 2] = 220;
+        //     data.data[i*4 + 3] = 255;
+
+        //  }
+        //  context.putImageData(data,0,0);
+
+
+        var img = new Image();
+        img.src="images/1.jpg";
+        img.onload = function(){
+            context.drawImage(this,0,0);
+            //var imageData = context.createImageData(this.width,this.height);
+            var imageData = context.getImageData(0,0,this.width,this.height);
+            var pixels = imageData.data;
+            for(var i=0;i<this.width*this.height;i++){
+                pixels[i*4] = 255;
+                pixels[i*4 + 1] = 0;
+                pixels[i*4 + 2] = 0;
+                pixels[i*4 + 3] = 255;
             }
+            context.putImageData(imageData,0,0);
+        }
 
-        };
-        a.fun();
-       // saycolor();   //red
-        // $(function(){
-            
-        //     alert(a(3));
-          
-        // })
+
+    })
+
+
+        
+
+
+
+
+
+
+   //  /**天空*/
+   //  function Sky(width,height,background){
+
+   //      this.width = width;
+   //      this.height = height;
+   //      this.background = background;
+
+   //  }
+   //  Sky.prototype = {
+
+   //      change : function(background){
+   //          this.background = background;
+   //      },
+   //      rain : function(){
+
+   //      }
+
+   //  };
+
+   //  /**雨，雪等父类*/
+   //  function Drop(width,height){
+   //      this.width = width;
+   //      this.height = height;
+   //  }
+   //  Drop.prototype = {
+
+   //      init : function(){
+   //          /// this.width  this.height
+   //      },
+   //      start : function(){
+
+   //      }
+
+   //  };
+
+   //  /**下雨*/
+   //  function Rain(){
+   //     // Drop.call(this);      //借用父类构造函数
+   //  }
+   //  Rain.prototype = new Drop(10,10);//继承drop
+   //  //添加新方法
+   //  Rain.prototype.flashing = function(){
+
+   //  }
+
+   //  var reCat = /[a-z]/; 
+   //  var str = "123";
+   // // console.log(reCat.test(str));
+
+
+   // function a(fun){
+   //      fun();
+   // }
+
+   // function creatFunction(){
+   //      var res = new Array();
+   //      for(var i =0;i<10;i++){
+   //          var num = i;
+   //          res[i] = function(){
+   //              return num;
+   //          }
+   //      }
+   //      return res;
+   // }
+   
+
+   // console.log(creatFunction());
+
+   
+
+
+// ws = new WebSocket("ws://192.168.84.129:2345/");
+// ws.onopen = function() {
+//     alert("连接成功");
+//     ws.send('tom');
+//     alert("给服务端发送一个字符串：tom");
+// };
+// ws.onmessage = function(e) {
+//     alert("收到服务端的消息：" + e.data);
+// };
+
+
+
+
+
+// function Person2(){
+// }
+// Person2.prototype.name = 'Jack';//使用原型来添加属性
+// Person2.prototype.age = 29;
+
+
+// var person1 = new Person2();
+// alert(person1.name);//Jack
+// person1.name = "asd";
+// var person2 = new Person2();
+// alert(person2.name);//Jack
+
+
+// function Person() {
+// }
+// Person.prototype = {
+//     name : "Asdas"
+
+// }
+
+// var person1 = new Person();
+// alert(person1.name);
+// person1.name = "qweqe";
+
+// var person2 = new Person();
+// alert(person2.name);
+
+
+// function Person() {
+//     this.name = "wei";
+//     this.lessons = ['Math', 'Physics'];
+// }
+
+// Person.prototype = {
+// 　　　　constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+// 　　　　getName: function () {
+// 　　　　　　return this.name;
+// 　　　　}
+// }
+
+// function SubPerson() {
+    
+//     this.name = "haha";
+// }
+
+// SubPerson.prototype = new Person();
+
+// var p = new SubPerson();
+
+  //  alert(p.getName());
+
+
     </script>
 </head>
-<!-- <i class="typcn typcn-calculator"></i> -->
+
     <body>
        
-        <button class="button button-primary">按钮</button>
+        <canvas width="500px" height="500px" id="canvas">按钮</canvas>
 
     </body>
 </html>
